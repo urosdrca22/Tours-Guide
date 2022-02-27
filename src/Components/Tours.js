@@ -1,14 +1,15 @@
 import React from "react";
 import Tour from './Tour'
-import { Container, Row, Col } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import './Tours.css';
 
-const Tours = ({ tours }) => {
+const Tours = ({ tours, removeTour}) => {
     return (
             <Container className="tours_container">
                         <h1>Our Tours</h1>
+                        <div className="underline"></div>
                         {tours.map((tour) => {
-                            return <Tour key={tour.id} {...tour}></Tour>
+                            return <Tour key={tour.id} {...tour} removeTour={removeTour}></Tour>
                         })}
             </Container>
     );

@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import './App.css';
-import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Tours from './Components/Tours.js'
-import { Container } from 'react-bootstrap';
 
 const url = 'https://course-api.com/react-tours-project'
 
 function App() {
   const [tours, setTours] = useState([]);
+
+  const removeTour = (id) => {
+    const newTours = tours.filter((tour) => tour.id !== id);
+    setTours(newTours)
+  };
 
   const FetchTours = async() => {
     const response = await fetch(url);
@@ -21,7 +24,7 @@ function App() {
   }, []);
 
   return (
-        <Tours tours={tours}></Tours>
+        <Tours tours={tours} removeTour={removeTour} ></Tours>
   );
 }
 
